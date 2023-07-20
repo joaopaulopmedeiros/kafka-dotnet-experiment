@@ -12,11 +12,12 @@ public class ComprasController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostAsync
     (
-        [FromBody] CompraRequest request,
+        [FromHeader(Name = "X-Utms")] string utm,
+        [FromBody] CompraRequest payload,
         [FromServices] CompraService service
     )
     {
-        var response = await service.ProcessAsync(request);
+        var response = await service.ProcessAsync(payload, utm);
         return Accepted(response);
     }
 }

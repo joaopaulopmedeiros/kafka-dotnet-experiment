@@ -15,12 +15,17 @@ public class CompraService
     /// Mapeia requisição em evento de compra e envia para tópico kafka
     /// onde será processado em background de forma assíncrona.
     /// </summary>
-    /// <param name="request"></param>
+    /// <param name="payload"></param>
+    /// <param name="utm"></param>
     /// <returns></returns>
-    public async Task<CompraResponse> ProcessAsync(CompraRequest request)
+    public async Task<CompraResponse> ProcessAsync(CompraRequest payload, string utm)
     {
-        CompraEvent @event = _mapper.Map<CompraEvent>(request);
+        CompraEvent @event = _mapper.Map<CompraEvent>(payload);
+
+        @event.UseUtm(UtmHelper.Mount(utm));
+
         await _eventBus.PublishAsync(@event);
+
         return new CompraResponse(@event.Key);
     }
 }

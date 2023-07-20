@@ -7,6 +7,6 @@ public class CompraResponse
         Key = key;
     }
 
-    public string? Key { get; private set; } 
-    public string? Message { get; private set; } = "evento de compra em processamento.";
+    public string Key { get; private set; } 
+    public string Message { get; private set; } = "evento de compra em processamento.";
 }

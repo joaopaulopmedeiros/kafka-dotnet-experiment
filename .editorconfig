@@ -173,6 +173,10 @@ csharp_preserve_single_line_statements = true
 csharp_style_prefer_null_check_over_type_check = true:suggestion
 
 #### Naming styles ####
+
+# CS8632: A anotação para tipos de referência anuláveis deve ser usada apenas em código em um contexto de anotações '#nullable'.
+dotnet_diagnostic.CS8632.severity = silent
+
 [*.{cs,vb}]
 
 # Naming rules

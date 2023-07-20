@@ -9,3 +9,5 @@ global using Ecommerce.Api.Responses;
 global using Ecommerce.Api.IoC;
 global using AutoMapper;
 global using Ecommerce.Api.Mappings;
+global using Ecommerce.Api.Helpers;
+global using System.Text.RegularExpressions;
