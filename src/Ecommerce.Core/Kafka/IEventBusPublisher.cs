@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Api.Services;
+﻿namespace Ecommerce.Core.Kafka;
 
 public interface IEventBusPublisher
 {
