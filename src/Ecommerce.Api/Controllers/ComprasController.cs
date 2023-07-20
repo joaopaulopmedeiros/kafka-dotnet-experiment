@@ -16,7 +16,7 @@ public class ComprasController : ControllerBase
         [FromServices] CompraService service
     )
     {
-        await service.ProcessAsync(request);
-        return Accepted();
+        var response = await service.ProcessAsync(request);
+        return Accepted(response);
     }
 }
