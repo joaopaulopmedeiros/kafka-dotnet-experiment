@@ -2,7 +2,7 @@
 
 public static class DependencyInjector
 {
-   public static IServiceCollection AddConsumerServices(this IServiceCollection services)
+    public static IServiceCollection AddConsumerServices(this IServiceCollection services)
     {
         services.AddKafkaEventBusConsumer<CompraHandler>(new KafkaConsumerConfiguration { });
         return services;

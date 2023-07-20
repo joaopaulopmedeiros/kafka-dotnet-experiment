@@ -19,12 +19,12 @@ public class KafkaProducer : IProducer
 
     public async Task ProduceAsync(IntegrationEvent @event, string topicName)
     {
-        var header = new Headers
+        Headers header = new()
         {
             { "contrato", Encoding.UTF8.GetBytes(@event.GetType().AssemblyQualifiedName.ToString()) }
         };
 
-        var message = new Message<string, IntegrationEvent>
+        Message<string, IntegrationEvent> message = new()
         {
             Key = @event.Key,
             Value = @event,
