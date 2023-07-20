@@ -11,3 +11,7 @@ global using AutoMapper;
 global using Ecommerce.Api.Mappings;
 global using Ecommerce.Api.Helpers;
 global using System.Text.RegularExpressions;
+global using Confluent.Kafka;
+global using System.Text;
+global using System.Text.Json;
+global using Microsoft.Extensions.Configuration;

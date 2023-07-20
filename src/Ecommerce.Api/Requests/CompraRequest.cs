@@ -6,7 +6,7 @@ public class CompraRequest
     public double Valor { get; set; }
 }
 
-public class CompraEvent : BaseEvent
+public class CompraEvent : IntegrationEvent
 {
     public override string Type => "compra"; 
     public Utm? Utm { get; set; }
@@ -23,7 +23,7 @@ public class Utm
     public string Campaign { get; set; }
 }
 
-public abstract class BaseEvent
+public abstract class IntegrationEvent
 {
     public string Key { get; private set; } = Guid.NewGuid().ToString();
     public virtual string Type { get; private set;  }
