@@ -3,10 +3,12 @@
 public class CompraService
 {
     private readonly IMapper _mapper;
+    private readonly IEventBus _eventBus;
 
-    public CompraService(IMapper mapper)
+    public CompraService(IMapper mapper, IEventBus eventBus)
     {
         _mapper = mapper;
+        _eventBus= eventBus;
     }
 
     /// <summary>
@@ -18,7 +20,7 @@ public class CompraService
     public async Task<CompraResponse> ProcessAsync(CompraRequest request)
     {
         CompraEvent @event = _mapper.Map<CompraEvent>(request);
-        await Task.Delay(100);
+        await _eventBus.PublishAsync(@event);
         return new CompraResponse(@event.Key);
     }
 }

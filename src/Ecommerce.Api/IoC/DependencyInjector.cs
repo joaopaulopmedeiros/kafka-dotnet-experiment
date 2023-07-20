@@ -6,6 +6,7 @@ public static class DependencyInjector
     {
         services.AddScoped<CompraService>();
         services.AddAutoMapper(typeof(CompraProfile));
+        services.AddSingleton<IEventBus, KafkaEventBus>();
         return services;
     }
 }
