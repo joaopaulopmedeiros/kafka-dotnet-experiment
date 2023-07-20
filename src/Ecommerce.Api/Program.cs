@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen(o =>
     string xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-
+builder.Services.AddApiServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

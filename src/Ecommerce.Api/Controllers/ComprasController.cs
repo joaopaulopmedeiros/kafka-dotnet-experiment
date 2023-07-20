@@ -10,9 +10,13 @@ public class ComprasController : ControllerBase
     /// <returns></returns>
     [SwaggerResponse((int)HttpStatusCode.Accepted)]
     [HttpPost]
-    public async Task<IActionResult> PostAsync()
+    public async Task<IActionResult> PostAsync
+    (
+        [FromBody] CompraRequest request,
+        [FromServices] CompraService service
+    )
     {
-        await Task.Delay(10);
+        await service.ProcessAsync(request);
         return Accepted();
     }
 }
