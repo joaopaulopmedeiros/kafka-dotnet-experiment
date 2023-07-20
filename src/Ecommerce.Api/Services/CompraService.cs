@@ -4,13 +4,13 @@ public class CompraService
 {
     private readonly IMapper _mapper;
     private readonly IConfiguration _configuration;
-    private readonly IEventBusPublisher _EventBusPublisher;
+    private readonly IProducer _producer;
 
-    public CompraService(IMapper mapper, IConfiguration configuration, IEventBusPublisher EventBusPublisher)
+    public CompraService(IMapper mapper, IConfiguration configuration, IProducer producer)
     {
         _mapper = mapper;
         _configuration = configuration;
-        _EventBusPublisher= EventBusPublisher;
+        _producer = producer;
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class CompraService
 
         string topicName = _configuration.GetValue<string>("Kafka:Topics:Compras");
 
-        await _EventBusPublisher.PublishAsync(@event, topicName);
+        await _producer.ProduceAsync(@event, topicName);
 
         return new CompraResponse(@event.Key);
     }

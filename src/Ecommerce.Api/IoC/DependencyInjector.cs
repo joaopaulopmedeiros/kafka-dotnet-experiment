@@ -6,7 +6,8 @@ public static class DependencyInjector
     {
         services.AddScoped<CompraService>();
         services.AddAutoMapper(typeof(CompraProfile));
-        services.AddSingleton<IEventBusPublisher, KafkaEventBusPublisher>(x => new KafkaEventBusPublisher(configuration.GetValue<string>("Kafka:BootstrapServers")));
+        services.AddKafkaEventBusPublisher(configuration.GetValue<string>("Kafka:BootstrapServers"));
         return services;
+        //        services.AddSingleton<IEventBusPublisher, KafkaEventBusPublisher>(x => new KafkaEventBusPublisher(configuration.GetValue<string>("Kafka:BootstrapServers")));
     }
 }
