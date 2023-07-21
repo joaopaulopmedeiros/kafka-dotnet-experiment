@@ -58,7 +58,7 @@ public class KafkaConsumer<TContract, THandler> : BackgroundService
 
                         try
                         {
-                            await _handler.Handle(consumeResult.Message.Value);
+                            await _handler.HandleAsync(consumeResult.Message.Value);
                         }
                         catch (Exception ex)
                         {

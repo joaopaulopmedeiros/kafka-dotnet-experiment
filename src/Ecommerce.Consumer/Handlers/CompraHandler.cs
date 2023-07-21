@@ -2,7 +2,7 @@
 
 public class CompraHandler : IIntegrationEventHandler<CompraEvent>
 {
-    public async Task Handle(CompraEvent @event)
+    public async Task HandleAsync(CompraEvent @event)
     {
         await Task.Delay(100);
         Console.WriteLine("hello world");
