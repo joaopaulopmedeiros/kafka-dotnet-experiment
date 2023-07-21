@@ -13,7 +13,7 @@ public class KafkaProducer : IProducer
         };
 
         _producer = new ProducerBuilder<string, IntegrationEvent>(configuration)
-            .SetValueSerializer(StandardJsonSerializer.Use())
+            .SetValueSerializer(StandardJsonSerializer<IntegrationEvent>.Use())
             .Build();
     }
 

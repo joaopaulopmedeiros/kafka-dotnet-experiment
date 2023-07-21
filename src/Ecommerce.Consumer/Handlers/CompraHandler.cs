@@ -1,10 +1,10 @@
 ﻿namespace Ecommerce.Consumer.Handlers;
 
-public class CompraHandler
+public class CompraHandler : IIntegrationEventHandler<CompraEvent>
 {
-    public async Task HandleAsync()
+    public async Task Handle(CompraEvent @event)
     {
-        await Task.Delay(1000);
-        Console.WriteLine("handled...");
+        await Task.Delay(100);
+        Console.WriteLine("hello world");
     }
 }

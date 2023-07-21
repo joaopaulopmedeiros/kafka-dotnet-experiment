@@ -13,16 +13,14 @@ public static class DependencyInjector
 
         var configuration = builder.Build();
 
-        services.AddSingleton<CompraHandler>();
-
         var kafkaConfiguration = new KafkaConsumerConfiguration
         {
             BootstrapServers = configuration.GetValue<string>("Kafka:BootstrapServers"),
             GroupId = configuration.GetValue<string>("Kafka:GroupId"),
-            Topic = configuration.GetValue<string>("Kafka:Topics:Compra")
+            Topic = configuration.GetValue<string>("Kafka:Topics:Compras")
         };
 
-        services.AddHostedService(x => new KafkaConsumer(kafkaConfiguration));
+        services.AddEventStreamHandler<CompraEvent, CompraHandler>(kafkaConfiguration);
 
         return services;
     }
