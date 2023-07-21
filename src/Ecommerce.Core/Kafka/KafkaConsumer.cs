@@ -10,7 +10,7 @@ public class KafkaConsumer<TContract, THandler> : BackgroundService
 
     public KafkaConsumer
     (
-        KafkaConsumerConfiguration configuration, 
+        KafkaConsumerConfiguration<TContract> configuration, 
         THandler handler,
         ILogger<KafkaConsumer<TContract, THandler>> logger
     )
@@ -37,7 +37,7 @@ public class KafkaConsumer<TContract, THandler> : BackgroundService
             .SetStatisticsHandler((_, json) => _logger.LogInformation("{Message}", $"Statistics: {json}"))
             .Build();
 
-        _consumer.Subscribe(configuration.Topic);
+        _consumer.Subscribe(configuration.TopicName);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)

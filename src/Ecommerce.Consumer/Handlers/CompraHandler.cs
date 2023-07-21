@@ -12,6 +12,6 @@ public class CompraHandler : IIntegrationEventHandler<CompraEvent>
     public async Task HandleAsync(CompraEvent @event)
     {
         await Task.Delay(100);
-        _logger.LogInformation("Compra processada com sucesso");
+        _logger.LogInformation("{Message}", "Compra processada com sucesso");
     }
 }

@@ -8,13 +8,13 @@ public static class DependencyInjector
         return services;
     }
 
-    public static IServiceCollection AddEventStreamHandler<CompraEvent, CompraHandler>(this IServiceCollection services, KafkaConsumerConfiguration configuration)
-        where CompraEvent : IntegrationEvent
-        where CompraHandler : class, IIntegrationEventHandler<CompraEvent>
+    public static IServiceCollection AddEventStreamHandler<TContract, THandler>(this IServiceCollection services, KafkaConsumerConfiguration<TContract> configuration)
+        where TContract : IntegrationEvent
+        where THandler : class, IIntegrationEventHandler<TContract>
     {
         services.AddSingleton(configuration);
-        services.AddSingleton<IIntegrationEventHandler<CompraEvent>, CompraHandler>();
-        services.AddHostedService<KafkaConsumer<CompraEvent, IIntegrationEventHandler<CompraEvent>>>();
+        services.AddSingleton<IIntegrationEventHandler<TContract>, THandler>();
+        services.AddHostedService<KafkaConsumer<TContract, IIntegrationEventHandler<TContract>>>();
         return services;
     }
 }
