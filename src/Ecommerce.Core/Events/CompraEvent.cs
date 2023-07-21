@@ -16,10 +16,3 @@ public class Utm
     public string Medium { get; set; }
     public string Campaign { get; set; }
 }
-
-public abstract class IntegrationEvent
-{
-    public string Key { get; private set; } = Guid.NewGuid().ToString();
-    public virtual string Type { get; private set; }
-    public DateTime Timestamp { get; private set; } = DateTime.UtcNow;
-}

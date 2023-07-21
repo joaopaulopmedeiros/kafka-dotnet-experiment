@@ -20,16 +20,16 @@ public class CompraService
     /// <param name="payload"></param>
     /// <param name="utm"></param>
     /// <returns></returns>
-    public async Task<CompraResponse> ProcessAsync(CompraRequest payload, string utm)
+    public async Task<AcceptedResponse> ProcessAsync(CompraRequest payload, string utm)
     {
         CompraEvent @event = _mapper.Map<CompraEvent>(payload);
 
         @event.UseUtm(UtmHelper.Mount(utm));
 
-        string topicName = _configuration.GetValue<string>("Kafka:Topics:Compras");
+        string topicName = _configuration.GetValue<string>("Kafka:Topics:Compra");
 
         await _producer.ProduceAsync(@event, topicName);
 
-        return new CompraResponse(@event.Key);
+        return new AcceptedResponse(@event.Key, "evento de compra em processamento.");
     }
 }
