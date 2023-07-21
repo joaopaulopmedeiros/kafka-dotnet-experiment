@@ -28,7 +28,7 @@ public class KafkaConsumer<TContract, THandler> : BackgroundService
             StatisticsIntervalMs = 60000,
             SessionTimeoutMs = 60000,
             AutoOffsetReset = AutoOffsetReset.Earliest,
-            EnablePartitionEof = false,
+            EnablePartitionEof = true,
         };
 
         _consumer = new ConsumerBuilder<Ignore, TContract>(kafkaConfig)
