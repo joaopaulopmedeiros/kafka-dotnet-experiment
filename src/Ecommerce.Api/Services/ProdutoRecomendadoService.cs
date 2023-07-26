@@ -21,6 +21,6 @@ public class ProdutoRecomendadoService
         
         await _producer.ProduceAsync(@event, topicName);
         
-        return new AcceptedResponse(Guid.NewGuid().ToString(), "evento de click de produto recomendado em processamento");
+        return new AcceptedResponse(@event.Key, "evento de click de produto recomendado em processamento");
     }
 }
